@@ -1,0 +1,75 @@
+/*
+Program name: style.css
+Author: Lotanna Ume-Ezeoke
+Date: Feb 24, 2026
+Description: styles for hw1. blue theme mostly.
+*/
+
+/* quick fix for the header size jump as my header was slightly changing its overall width when I jump on the thank you page from the first page */
+.top_banner_div {
+    min-height: 100px; 
+    display: block;
+    overflow: hidden;
+}
+body {
+    background-color: #f4f7f6; 
+  font-family: "Trebuchet MS", Helvetica, sans-serif;
+color: #333333;
+    margin: 20px;
+}
+
+/* header banner area */
+.top_banner_div {
+background-color: rgb(42, 163, 172);
+      color: white;
+    border-radius: 2px;
+margin-bottom: 15px;
+}
+
+h1, h2 {
+font-family: 'Arial Black', Gadget, sans-serif;
+  color: #2c3e50;
+}
+
+    table {
+        width: 90%;
+margin-left: 10px;
+    }
+
+td {
+    padding: 8px;
+font-size: 14px;
+}
+
+
+#footer_section {
+    background: #dddddd;
+          padding: 20px;
+    text-align: center;
+font-size: 12px;
+}
+
+/* link colors */
+a:link { color: #2980b9; }
+    a:visited { color: #8e44ad; }
+
+
+/* buttons */
+button, input[type="submit"] {
+    background-color: #27ae60;
+color: white;
+padding: 10px 20px;
+    border: none;
+cursor: pointer;
+}
+
+    input[type="reset"] {
+background-color: #e74c3c;
+        color: #ffffff;
+    }
+
+/* some extra space for radios */
+.radio-zone {
+            padding-left: 25px;
+    border-left: 3px solid #ccc;
+}
