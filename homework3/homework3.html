@@ -38,9 +38,11 @@ All script logic has been moved to an external JavaScript file ( myscripts.js) a
        </td>
       </tr>
                 
-        <tr><td>M.I.</td></tr>
-        <tr><td><input type="text" name="mid_init" pattern="[A-Za-z]{1}" title="Single letter only"></td></tr>
-
+     <tr>
+   <td>M.I.</td>
+   <td><input type="text" id="mid_init" name="mid_init" maxlength="1" onblur="validateMI()" style="width: 30px"></td>
+   <td><span id="mi_err" class="error-msg"></span></td>
+   </tr>
        <tr><td>Last Name:</td>
             <td><input type="text" id="LName" name="LName" onblur="validateLastName()" pattern="[A-Za-z0-9'\- 2-5]{1,30}" title="Letters, dashes, apostrophes, and numbers 2-5 allowed"></td>
             <td><span id="LName_err" class="error-msg" style="color:red; font-size: 11px;"></span></td>
