@@ -41,14 +41,20 @@ All script logic has been moved to an external JavaScript file ( myscripts.js) a
         <tr><td>M.I.</td></tr>
         <tr><td><input type="text" name="mid_init" pattern="[A-Za-z]{1}" title="Single letter only"></td></tr>
 
-        <tr><td>Last Name:</td></tr>
-        <tr><td><input type="text" name="LName" pattern="[A-Za-z0-9'\- 2-5]{1,30}" title="Letters, dashes, apostrophes, and numbers 2-5 allowed"></td></tr>
+       <tr><td>Last Name:</td>
+            <td><input type="text" id="LName" name="LName" onblur="validateLastName()" pattern="[A-Za-z0-9'\- 2-5]{1,30}" title="Letters, dashes, apostrophes, and numbers 2-5 allowed"></td>
+            <td><span id="LName_err" class="error-msg" style="color:red; font-size: 11px;"></span></td>
+        </tr>
 
-        <tr><td>DOB:</td></tr>
-        <tr><td><input type="date" id="dob" name="dob_date" required></td></tr>
+        <tr><td>DOB:</td>
+            <td><input type="date" id="dob" name="dob_date" onblur="validateDOB()" required></td>
+            <td><span id="dob_err" class="error-msg" style="color:red; font-size: 11px;"></span></td>
+        </tr>
 
-        <tr><td>SSN:</td></tr>
-        <tr><td><input type="password" name="ssn_secret" pattern="\d{3}-\d{2}-\d{4}" title="Format: 000-00-0000" required></td></tr>
+        <tr><td>SSN:</td>
+            <td><input type="password" id="ssn" name="ssn_secret" oninput="formatSSN(this)" onblur="validateSSN()" placeholder="000-00-0000" required></td>
+            <td><span id="ssn_err" class="error-msg" style="color:red; font-size: 11px;"></span></td>
+        </tr>
 
         <tr><td>Email:</td></tr>
         <tr><td><input type="email" name="user_email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" title="Must be name@domain.tld" required></td></tr>
