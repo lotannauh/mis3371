@@ -28,8 +28,15 @@ All script logic has been moved to an external JavaScript file ( myscripts.js) a
         <form id="patientForm" action="thankyou.html" onsubmit="return validatePasswords()">
             
         <table cellpadding="5">
-        <tr><td>First Name:</td></tr>
-        <tr><td><input type="text" name="fName" pattern="[A-Za-z'\- ]{1,30}" title="Letters, apostrophes and dashes only (1-30 chars)" required></td></tr>
+       <tr>
+       <td>First Name:</td>
+       <td>
+        <input type="text" id="fName" name="fName" onblur="validateFirstName()" pattern="[A-Za-z'\- ]{1,30}" title="Letters, apostrophes and dashes only (1-30 chars)" required>
+       </td>
+       <td>
+        <span id="fName_err" class="error-msg" style="color:red; font-size: 11px;"></span>
+       </td>
+      </tr>
                 
         <tr><td>M.I.</td></tr>
         <tr><td><input type="text" name="mid_init" pattern="[A-Za-z]{1}" title="Single letter only"></td></tr>
