@@ -58,17 +58,25 @@ All script logic has been moved to an external JavaScript file ( myscripts.js) a
             <td><span id="ssn_err" class="error-msg" style="color:red; font-size: 11px;"></span></td>
         </tr>
 
-        <tr><td>Email:</td></tr>
-        <tr><td><input type="email" name="user_email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" title="Must be name@domain.tld" required></td></tr>
+      <tr><td>Email:</td>
+            <td><input type="email" id="email" name="user_email" onblur="validateEmail()" placeholder="name@domain.tld" required></td>
+            <td><span id="email_err" class="error-msg" style="color:red; font-size: 11px;"></span></td>
+        </tr>
 
-        <tr><td>Phone Number:</td></tr>
-        <tr><td><input type="tel" name="phone_num" pattern="\d{3}-\d{3}-\d{4}" title="Format: 000-000-0000" required></td></tr>
+        <tr><td>Phone Number:</td>
+            <td><input type="tel" id="phone" name="phone_num" oninput="formatPhone(this)" onblur="validatePhone()" placeholder="000-000-0000" required></td>
+            <td><span id="phone_err" class="error-msg" style="color:red; font-size: 11px;"></span></td>
+        </tr>
 
-        <tr><td>Address 1:</td></tr>
-        <tr><td><input type="text" name="addr1" minlength="2" maxlength="30" required></td></tr>
+        <tr><td>Address 1:</td>
+            <td><input type="text" id="addr1" name="addr1" onblur="validateAddr1()" required></td>
+            <td><span id="addr1_err" class="error-msg" style="color:red; font-size: 11px;"></span></td>
+        </tr>
 
-        <tr><td>City:</td></tr>
-        <tr><td><input type="text" name="city_val" minlength="2" maxlength="30" required></td></tr>
+        <tr><td>City:</td>
+            <td><input type="text" id="city" name="city_val" onblur="validateCity()" required></td>
+            <td><span id="city_err" class="error-msg" style="color:red; font-size: 11px;"></span></td>
+        </tr>
 
         <tr><td>State:</td></tr>
         <tr>
