@@ -11,178 +11,288 @@ All script logic has been moved to an external JavaScript file ( myscripts.js) a
 <meta charset="UTF-8">
 <title>Registration Form HW2 - Lotanna Medical</title>
 <link rel="stylesheet" href="style.css">
-<script src="myscripts.js"></script>
+<script src="myscript.js"></script>
 </head>
 
 <body>
-   <div class="top_banner_div" style="padding: 10px; height: 120px;"> 
+
+<div class="top_banner_div" style="padding: 10px; height: 120px;"> 
     <img src="logo.png" alt="clinic logo" height="80">
     <span style="font-size: 24px; font-weight: bold;">Lotanna Medical Services</span>
     <p id="date_display_v1"></p>
-   </div>
+</div>
 
-    <div id="Main_body_area">
-        <h2 class="form-title">New Patient Registration (v2)</h2>
-        <p>Please fill out everything below accurately.</p>
+<div id="Main_body_area">
 
-        <form id="patientForm" action="thankyou.html" onsubmit="return validatePasswords()">
-            
-        <table cellpadding="5">
-       <tr>
-       <td>First Name:</td>
-       <td>
-        <input type="text" id="fName" name="fName" onblur="validateFirstName()" pattern="[A-Za-z'\- ]{1,30}" title="Letters, apostrophes and dashes only (1-30 chars)" required>
-       </td>
-       <td>
-        <span id="fName_err" class="error-msg" style="color:red; font-size: 11px;"></span>
-       </td>
-      </tr>
-                
-     <tr>
-   <td>M.I.</td>
-   <td><input type="text" id="mid_init" name="mid_init" maxlength="1" onblur="validateMI()" style="width: 30px"></td>
-   <td><span id="mi_err" class="error-msg"></span></td>
-   </tr>
-       <tr><td>Last Name:</td>
-            <td><input type="text" id="LName" name="LName" onblur="validateLastName()" pattern="[A-Za-z0-9'\- 2-5]{1,30}" title="Letters, dashes, apostrophes, and numbers 2-5 allowed"></td>
-            <td><span id="LName_err" class="error-msg" style="color:red; font-size: 11px;"></span></td>
-        </tr>
+<h2 class="form-title">New Patient Registration (v3)</h2>
+<p>Please fill out everything below accurately.</p>
 
-        <tr><td>DOB:</td>
-            <td><input type="date" id="dob" name="dob_date" onblur="validateDOB()" required></td>
-            <td><span id="dob_err" class="error-msg" style="color:red; font-size: 11px;"></span></td>
-        </tr>
+<form id="patientForm" action="thankyou.html">
 
-        <tr><td>SSN:</td>
-            <td><input type="password" id="ssn" name="ssn_secret" oninput="formatSSN(this)" onblur="validateSSN()" placeholder="000-00-0000" required></td>
-            <td><span id="ssn_err" class="error-msg" style="color:red; font-size: 11px;"></span></td>
-        </tr>
+<table cellpadding="5">
 
-      <tr><td>Email:</td>
-            <td><input type="email" id="email" name="user_email" onblur="validateEmail()" placeholder="name@domain.tld" required></td>
-            <td><span id="email_err" class="error-msg" style="color:red; font-size: 11px;"></span></td>
-        </tr>
+<tr><td>First Name:</td></tr>
+<tr>
+<td>
+<input type="text" id="fName"
+pattern="[A-Za-z'\- ]{1,30}"
+title="Letters, apostrophes and dashes only (1-30 chars)"
+required
+oninput="chkFName()" onblur="chkFName()">
+<span class="error" id="fName_error"></span>
+</td>
+</tr>
 
-        <tr><td>Phone Number:</td>
-            <td><input type="tel" id="phone" name="phone_num" oninput="formatPhone(this)" onblur="validatePhone()" placeholder="000-000-0000" required></td>
-            <td><span id="phone_err" class="error-msg" style="color:red; font-size: 11px;"></span></td>
-        </tr>
+<tr><td>M.I.</td></tr>
+<tr>
+<td>
+<input type="text" id="mid_init"
+pattern="[A-Za-z]{1}"
+title="Single letter only"
+onblur="chkMI()">
+<span class="error" id="mid_init_error"></span>
+</td>
+</tr>
 
-        <tr><td>Address 1:</td>
-            <td><input type="text" id="addr1" name="addr1" onblur="validateAddr1()" required></td>
-            <td><span id="addr1_err" class="error-msg" style="color:red; font-size: 11px;"></span></td>
-        </tr>
+<tr><td>Last Name:</td></tr>
+<tr>
+<td>
+<input type="text" id="LName"
+pattern="[A-Za-z'\- ]{1,30}"
+title="Letters, apostrophes and dashes only"
+required
+oninput="chkLName()" onblur="chkLName()">
+<span class="error" id="LName_error"></span>
+</td>
+</tr>
 
-        <tr><td>City:</td>
-            <td><input type="text" id="city" name="city_val" onblur="validateCity()" required></td>
-            <td><span id="city_err" class="error-msg" style="color:red; font-size: 11px;"></span></td>
-        </tr>
+<tr><td>DOB:</td></tr>
+<tr>
+<td>
+<input type="date" id="dob"
+required
+onblur="chkDOB()">
+<span class="error" id="dob_error"></span>
+</td>
+</tr>
 
-        <tr><td>State:</td></tr>
-        <tr>
-        <td>
-        <select name="state_dropdown" required title="Please select a state from the list.">
-            <option value="">--Select State--</option>
-            <option value="AL">AL</option>
-            <option value="AK">AK</option>
-            <option value="AZ">AZ</option>
-            <option value="AR">AR</option>
-            <option value="CA">CA</option>
-            <option value="CO">CO</option>
-            <option value="CT">CT</option>
-            <option value="DE">DE</option>
-            <option value="DC">DC</option>
-            <option value="FL">FL</option>
-            <option value="GA">GA</option>
-            <option value="HI">HI</option>
-            <option value="ID">ID</option>
-            <option value="IL">IL</option>
-            <option value="IN">IN</option>
-            <option value="IA">IA</option>
-            <option value="KS">KS</option>
-            <option value="KY">KY</option>
-            <option value="LA">LA</option>
-            <option value="ME">ME</option>
-            <option value="MD">MD</option>
-            <option value="MA">MA</option>
-            <option value="MI">MI</option>
-            <option value="MN">MN</option>
-            <option value="MS">MS</option>
-            <option value="MO">MO</option>
-            <option value="MT">MT</option>
-            <option value="NE">NE</option>
-            <option value="NV">NV</option>
-            <option value="NH">NH</option>
-            <option value="NJ">NJ</option>
-            <option value="NM">NM</option>
-            <option value="NY">NY</option>
-            <option value="NC">NC</option>
-            <option value="ND">ND</option>
-            <option value="OH">OH</option>
-            <option value="OK">OK</option>
-            <option value="OR">OR</option>
-            <option value="PA">PA</option>
-            <option value="PR">PR</option>
-            <option value="RI">RI</option>
-            <option value="SC">SC</option>
-            <option value="SD">SD</option>
-            <option value="TN">TN</option>
-            <option value="TX">TX</option>
-            <option value="UT">UT</option>
-            <option value="VT">VT</option>
-            <option value="VA">VA</option>
-            <option value="WA">WA</option>
-            <option value="WV">WV</option>
-            <option value="WI">WI</option>
-            <option value="WY">WY</option>
-            </select>
-        </td>
-        </tr>
+<tr><td>SSN:</td></tr>
+<tr>
+<td>
+<input type="password" id="ssn"
+maxlength="11"
+title="Format: 000-00-0000"
+required
+oninput="fmtSSN(this)" onblur="fmtSSN(this)">
+<span class="error" id="ssn_error"></span>
+</td>
+</tr>
 
-        <tr><td>Zip (5 or 10 digits):</td></tr>
-        <tr><td><input type="text" id="zip_input" name="zip_code" pattern="\d{5}(-\d{4})?" title="5 digits or 77002-1234 format" required></td></tr>
+<tr><td>Email:</td></tr>
+<tr>
+<td>
+<input type="email" id="email"
+title="name@domain.tld"
+required
+oninput="chkEmail()" onblur="chkEmail()">
+<span class="error" id="email_error"></span>
+</td>
+</tr>
 
-        <tr><td>Desired Salary: $<span id="salary_label">110000</span></td></tr>
-        <tr><td>$20k <input type="range" name="salary_slide" min="20000" max="200000" step="1000" oninput="updateSlider(this.value)"> $200k</td></tr>
-        </table>
+<tr><td>Phone Number:</td></tr>
+<tr>
+<td>
+<input type="tel" id="phone"
+title="000-000-0000"
+required
+oninput="chkPhone()" onblur="chkPhone()">
+<span class="error" id="phone_error"></span>
+</td>
+</tr>
 
-        <br>
-        <div class="check-box-zone">
-            <p><strong>Medical History:</strong></p>
-            <input type="checkbox" name="hx" value="Chicken Pox"> Chicken Pox <br>
-            <input type="checkbox" name="hx" value="Measles"> Measles <br>
-            <input type="checkbox" name="hx" value="Covid-19"> Covid-19 <br>
-            <input type="checkbox" name="hx" value="Small Pox"> Small Pox <br>
-            <input type="checkbox" name="hx" value="Tetanus"> Tetanus
-        </div>
+<tr><td>Address 1:</td></tr>
+<tr>
+<td>
+<input type="text" id="addr1"
+minlength="2" maxlength="30"
+required
+onblur="chkAddr1()">
+<span class="error" id="addr1_error"></span>
+</td>
+</tr>
 
-        <br>
-        <table border="0">
-        <tr><td>Desired User ID:</td></tr>
-        <tr><td><input type="text" id="userid" name="username_id" pattern="[A-Za-z][A-Za-z0-9_-]{4,29}" title="5-30 chars, no spaces, starts with letter" onchange="this.value = this.value.toLowerCase()" required></td></tr>
-        
-        <tr><td>Password:</td></tr>
-        <tr><td><input type="password" id="p1" name="pwd1" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#%^&*()-_+=\/><.,`~]).{8,30}" title="8-30 chars, 1 upper, 1 lower, 1 number, 1 special. NO QUOTES." required></td></tr>
-        
-        <tr><td>Re-enter Password:</td></tr>
-        <tr><td><input type="password" id="p2" name="pwd2" required></td></tr>
-        </table>
+<tr><td>City:</td></tr>
+<tr>
+<td>
+<input type="text" id="city"
+minlength="2" maxlength="30"
+required
+onblur="chkCity()">
+<span class="error" id="city_error"></span>
+</td>
+</tr>
 
-        <br>
-        <input type="button" value="REVIEW INFO" onclick="reviewInfo()">
-        <input type="submit" value="Submit">
-        <input type="reset" value="CLEAR">
-        </form>
+<tr><td>State:</td></tr>
+<tr>
+<td>
+<select id="state" title="Please select a state" required onblur="chkState()">
+<option value="">--Select State--</option>
+<option value="AL">AL</option><option value="AK">AK</option><option value="AZ">AZ</option>
+<option value="AR">AR</option><option value="CA">CA</option><option value="CO">CO</option>
+<option value="CT">CT</option><option value="DE">DE</option><option value="DC">DC</option>
+<option value="FL">FL</option><option value="GA">GA</option><option value="HI">HI</option>
+<option value="ID">ID</option><option value="IL">IL</option><option value="IN">IN</option>
+<option value="IA">IA</option><option value="KS">KS</option><option value="KY">KY</option>
+<option value="LA">LA</option><option value="ME">ME</option><option value="MD">MD</option>
+<option value="MA">MA</option><option value="MI">MI</option><option value="MN">MN</option>
+<option value="MS">MS</option><option value="MO">MO</option><option value="MT">MT</option>
+<option value="NE">NE</option><option value="NV">NV</option><option value="NH">NH</option>
+<option value="NJ">NJ</option><option value="NM">NM</option><option value="NY">NY</option>
+<option value="NC">NC</option><option value="ND">ND</option><option value="OH">OH</option>
+<option value="OK">OK</option><option value="OR">OR</option><option value="PA">PA</option>
+<option value="PR">PR</option><option value="RI">RI</option><option value="SC">SC</option>
+<option value="SD">SD</option><option value="TN">TN</option><option value="TX">TX</option>
+<option value="UT">UT</option><option value="VT">VT</option><option value="VA">VA</option>
+<option value="WA">WA</option><option value="WV">WV</option><option value="WI">WI</option>
+<option value="WY">WY</option>
+</select>
+<span class="error" id="state_error"></span>
+</td>
+</tr>
 
-        <div id="review_display_area" style="display:none; margin-top:20px; border:2px solid #2c3e50; padding:10px;">
-            <h3>PLEASE REVIEW THIS INFORMATION</h3>
-            <div id="output_content"></div>
-        </div>
-    </div>
+<tr><td>Zip Code:</td></tr>
+<tr>
+<td>
+<input type="text" id="zip"
+title="5 digits only"
+maxlength="5"
+required
+oninput="chkZip()" onblur="chkZip()">
+<span class="error" id="zip_error"></span>
+</td>
+</tr>
 
-   <div id="footer_section" style="margin-top: 50px; border-top: 1px solid #ccc;">
+<!-- <tr><td>Desired Salary: $<span id="salary_label">110000</span></td></tr>
+<tr>
+<td>
+$20k
+<input type="range" min="20000" max="200000" step="1000"
+oninput="updateSlider(this.value)">
+$200k
+</td>
+</tr> -->
+
+</table>
+
+<div class="check-box-zone">
+<p><strong>Check all that apply:</strong></p>
+
+<input type="checkbox"> Chicken Pox<br>
+<input type="checkbox"> Measles<br>
+<input type="checkbox"> Covid-19<br>
+<input type="checkbox"> Small Pox<br>
+<input type="checkbox"> Tetanus<br>
+</div>
+
+<br>
+
+<div class="radio-zone">
+<p><strong>Gender:</strong></p>
+<input type="radio" name="gender"> Male
+<input type="radio" name="gender"> Female
+<input type="radio" name="gender"> Other
+</div>
+
+<br>
+
+<div class="radio-zone">
+<p><strong>Vaccinated?</strong></p>
+<input type="radio" name="vaccinated"> Yes
+<input type="radio" name="vaccinated"> No
+</div>
+
+<br>
+
+<div class="radio-zone">
+<p><strong>Insurance?</strong></p>
+<input type="radio" name="insurance"> Yes
+<input type="radio" name="insurance"> No
+</div>
+
+<br>
+
+<table>
+
+<tr>
+<td>
+<strong>How is your health? (1–10):</strong>
+<span id="health_label">5</span>
+</td>
+</tr>
+
+<tr>
+<td>
+1
+<input type="range" min="1" max="10" step="1"
+value="5"
+oninput="updateHealth(this.value)">
+10
+</td>
+</tr>
+
+</table>
+
+<br>
+
+<table>
+
+<tr><td>Desired User ID:</td></tr>
+<tr>
+<td>
+<input type="text" id="userid"
+title="5-20 chars, starts with letter"
+required
+oninput="chkUser()" onblur="chkUser()">
+<span class="error" id="userid_error"></span>
+</td>
+</tr>
+
+<tr><td>Password:</td></tr>
+<tr>
+<td>
+<input type="password" id="p1"
+required
+oninput="chkPwd()">
+<span class="error" id="p1_error"></span>
+</td>
+</tr>
+
+<tr><td>Re-enter Password:</td></tr>
+<tr>
+<td>
+<input type="password" id="p2"
+required
+oninput="chkPwd()">
+<span class="error" id="p2_error"></span>
+</td>
+</tr>
+
+</table>
+
+<br>
+
+<input type="button" value="VALIDATE" onclick="validateAll()">
+<input type="submit" id="realSubmit" value="SUBMIT" style="display:none;">
+<input type="reset" value="CLEAR">
+
+</form>
+
+</div>
+
+<div id="footer_section" style="margin-top: 50px; border-top: 1px solid #ccc;">
 <p>Lotanna Medical | PO BOX 77003 | Lotanna Square TX 77003</p>
 <button type="button" onclick="alert('Contacting...')">CONTACT US</button>
 </div>
+
 </body>
 </html>
