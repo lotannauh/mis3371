@@ -124,6 +124,55 @@ All script logic has been moved to an external JavaScript file ( myscripts.js) a
         </table>
 
         <br>
+       <div class="check-box-zone">
+<p><strong>Medical History (check all that apply):</strong></p>
+
+<input type="checkbox" name="hx" value="Chicken Pox"> Chicken Pox<br>
+<input type="checkbox" name="hx" value="Measles"> Measles<br>
+<input type="checkbox" name="hx" value="Covid-19"> Covid-19<br>
+<input type="checkbox" name="hx" value="Small Pox"> Small Pox<br>
+<input type="checkbox" name="hx" value="Tetanus"> Tetanus
+</div>
+
+<br>
+
+<!-- RADIO BUTTONS -->
+<div class="radio-zone">
+<p><strong>Gender:</strong></p>
+<input type="radio" name="gender" value="Male"> Male
+<input type="radio" name="gender" value="Female"> Female
+<input type="radio" name="gender" value="Other"> Other
+</div>
+
+<br>
+
+<div class="radio-zone">
+<p><strong>Vaccinated?</strong></p>
+<input type="radio" name="vaccinated" value="Yes"> Yes
+<input type="radio" name="vaccinated" value="No"> No
+</div>
+
+<br>
+
+<div class="radio-zone">
+<p><strong>Insurance?</strong></p>
+<input type="radio" name="insurance" value="Yes"> Yes
+<input type="radio" name="insurance" value="No"> No
+</div>
+
+<br>
+
+<!-- HEALTH SLIDER -->
+<div class="radio-zone">
+<p><strong>How is your health? (1–10)</strong></p>
+1
+<input type="range" min="1" max="10" value="5" oninput="updateHealth(this.value)">
+10
+<br>
+Current Health Level: <span id="health_label">5</span>
+</div>
+
+<br>    
         <div class="check-box-zone">
             <p><strong>Medical History:</strong></p>
             <input type="checkbox" name="hx" value="Chicken Pox"> Chicken Pox <br>
