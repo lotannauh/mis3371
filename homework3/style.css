@@ -1,0 +1,190 @@
+/* ===============================
+   BASIC PAGE SETUP
+   =============================== */
+
+body {
+    background-color: #f4f7f6;
+    font-family: "Trebuchet MS", Helvetica, sans-serif;
+    color: #333;
+    margin: 20px;
+}
+
+
+
+.top_banner_div {
+    min-height: 90px;
+    background-color: rgb(42, 163, 172);
+    color: white;
+    padding: 15px;
+    border-radius: 3px;
+    margin-bottom: 20px;
+}
+
+.top_banner_div h1 {
+    margin: 0;
+}
+
+.top_banner_div p {
+    margin-top: 5px;
+    font-size: 14px;
+}
+
+
+
+h1, h2 {
+font-family: "Arial Black", Gadget, sans-serif;
+    color: #2c3e50;
+    margin-bottom: 10px;
+}
+
+
+#Main_body_area {
+    width: 75%;
+    margin: auto;
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 3px;
+    border: 1px solid #cccccc;
+}
+
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+td {
+    padding: 6px;
+    font-size: 14px;
+    vertical-align: top;
+}
+
+td:first-child {
+    width: 30%;
+    font-weight: bold;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="date"],
+select {
+    width: 240px;
+    padding: 4px;
+    font-size: 14px;
+}
+
+input[type="radio"],
+input[type="checkbox"] {
+    margin-right: 6px;
+}
+
+.check-box-zone,
+.radio-zone {
+    margin-left: 5px;
+    line-height: 1.6;
+}
+
+#health_label {
+    font-weight: bold;
+    color: #2c3e50;
+}
+
+.health-slider-wrap {
+    display: inline-block;
+    margin-left: 5px;
+}
+
+input[type="range"] {
+    vertical-align: middle;
+    margin: 0 6px;
+}
+
+input[type="button"],
+input[type="submit"],
+input[type="reset"] {
+    padding: 8px 18px;
+    font-size: 14px;
+    border: none;
+    cursor: pointer;
+    margin-top: 12px;
+}
+
+input[type="button"],
+input[type="submit"] {
+    background-color: #27ae60;
+    color: white;
+}
+
+input[type="reset"] {
+    background-color: #e74c3c;
+    color: white;
+}
+
+.error {
+    color: #c0392b;
+    font-size: 12px;
+    min-height: 14px;
+    margin-top: 2px;
+    display: block;
+}
+
+
+a:link {
+    color: #2980b9;
+}
+
+a:visited {
+    color: #8e44ad;
+}
+
+
+#footer_section {
+    background-color: #dddddd;
+    padding: 15px;
+    text-align: center;
+    font-size: 12px;
+    margin-top: 30px;
+}
+table input[type="text"],
+table input[type="password"],
+table input[type="email"],
+table input[type="date"],
+table select {
+    width: 260px;
+    padding: 8px;
+    font-size: 15px;
+}
+
+table input[type="radio"],
+table input[type="checkbox"] {
+    transform: scale(1.2);
+    margin-right: 6px;
+}
+
+table td {
+    font-size: 15px;
+    vertical-align: top;
+}
+
+table input[type="range"] {
+    width: 220px;
+}
+
+#health_label {
+    font-weight: bold;
+    font-size: 15px;
+    margin-left: 6px;
+}
+
+
+table input[type="button"],
+table input[type="submit"],
+table input[type="reset"] {
+    padding: 10px 22px;
+    font-size: 14px;
+}
+
+.error {
+    font-size: 13px;
+}
