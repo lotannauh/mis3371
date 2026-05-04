@@ -29,25 +29,42 @@ All script logic has been moved to an external JavaScript file ( myscripts.js) a
             
         <table cellpadding="5">
         <tr><td>First Name:</td></tr>
-        <tr><td><input type="text" name="fName" pattern="[A-Za-z'\- ]{1,30}" title="Letters, apostrophes and dashes only (1-30 chars)" required></td></tr>
+        <tr><td><input type="text" name="fName" maxlength="30" pattern="[A-Za-z'\- ]{1,30}" title="Letters, apostrophes and dashes only (1-30 chars)" required></td></tr>
                 
         <tr><td>M.I.</td></tr>
         <tr><td><input type="text" name="mid_init" pattern="[A-Za-z]{1}" title="Single letter only"></td></tr>
 
         <tr><td>Last Name:</td></tr>
-        <tr><td><input type="text" name="LName" pattern="[A-Za-z0-9'\- 2-5]{1,30}" title="Letters, dashes, apostrophes, and numbers 2-5 allowed"></td></tr>
+        <tr><td><input type="text" name="LName" maxlength="30" pattern="[A-Za-z0-9'\- 2-5]{1,30}" title="Letters, dashes, apostrophes, and numbers 2-5 allowed"></td></tr>
 
         <tr><td>DOB:</td></tr>
         <tr><td><input type="date" id="dob" name="dob_date" required></td></tr>
 
-        <tr><td>SSN:</td></tr>
-        <tr><td><input type="password" name="ssn_secret" pattern="\d{3}-\d{2}-\d{4}" title="Format: 000-00-0000" required></td></tr>
+       <tr><td>SSN:</td></tr>
+<tr>
+<td>
+<input type="password"
+name="ssn_secret"
+maxlength="11"
+title="Format: 000-00-0000"
+onkeydown="return ssnKey(event, this)"
+required>
+</td>
+</tr>
 
         <tr><td>Email:</td></tr>
-        <tr><td><input type="email" name="user_email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" title="Must be name@domain.tld" required></td></tr>
+        <tr><td><input type="email" name="user_email" maxlength="50" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" title="Must be name@domain.tld" required></td></tr>
 
-        <tr><td>Phone Number:</td></tr>
-        <tr><td><input type="tel" name="phone_num" pattern="\d{3}-\d{3}-\d{4}" title="Format: 000-000-0000" required></td></tr>
+  <tr><td>Phone Number:</td></tr>
+<tr>
+<td>
+<input type="tel" name="phone_num"
+maxlength="12"
+title="Format: 000-000-0000"
+onkeydown="return phoneKey(event, this)"
+required>
+</td>
+</tr>
 
         <tr><td>Address 1:</td></tr>
         <tr><td><input type="text" name="addr1" minlength="2" maxlength="30" required></td></tr>
@@ -117,7 +134,14 @@ All script logic has been moved to an external JavaScript file ( myscripts.js) a
         </tr>
 
         <tr><td>Zip (5 or 10 digits):</td></tr>
-        <tr><td><input type="text" id="zip_input" name="zip_code" pattern="\d{5}(-\d{4})?" title="5 digits or 77002-1234 format" required></td></tr>
+        <tr><td><input type="text"
+id="zip_input"
+name="zip_code"
+maxlength="5"
+pattern="\d{5}"
+title="ZIP code must be exactly 5 digits"
+onkeydown="return zipKey(event, this)"
+required></td></tr>
 
         <tr><td>Desired Salary: $<span id="salary_label">110000</span></td></tr>
         <tr><td>$20k <input type="range" name="salary_slide" min="20000" max="200000" step="1000" oninput="updateSlider(this.value)"> $200k</td></tr>
@@ -139,9 +163,9 @@ All script logic has been moved to an external JavaScript file ( myscripts.js) a
 <!-- RADIO BUTTONS -->
 <div class="radio-zone">
 <p><strong>Gender:</strong></p>
-<input type="radio" name="gender" value="Male"> Male
-<input type="radio" name="gender" value="Female"> Female
-<input type="radio" name="gender" value="Other"> Other
+<input type="radio" name="gender" value="Male" required> Male
+<input type="radio" name="gender" value="Female" required> Female
+<input type="radio" name="gender" value="Other" required> Other
 </div>
 
 <br>
@@ -174,10 +198,10 @@ Current Health Level: <span id="health_label">5</span>
 
         <table border="0">
         <tr><td>Desired User ID:</td></tr>
-        <tr><td><input type="text" id="userid" name="username_id" pattern="[A-Za-z][A-Za-z0-9_-]{4,29}" title="5-30 chars, no spaces, starts with letter" onchange="this.value = this.value.toLowerCase()" required></td></tr>
+        <tr><td><input type="text" id="userid" name="username_id" maxlength="20" pattern="[A-Za-z][A-Za-z0-9_-]{4,29}" title="5-30 chars, no spaces, starts with letter" onchange="this.value = this.value.toLowerCase()" required></td></tr>
         
         <tr><td>Password:</td></tr>
-        <tr><td><input type="password" id="p1" name="pwd1" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#%^&*()-_+=\/><.,`~]).{8,30}" title="8-30 chars, 1 upper, 1 lower, 1 number, 1 special. NO QUOTES." required></td></tr>
+        <tr><td><input type="password" id="p1" name="pwd1" maxlength="30" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#%^&*()-_+=\/><.,`~]).{8,30}" title="8-30 chars, 1 upper, 1 lower, 1 number, 1 special. NO QUOTES." required></td></tr>
         
         <tr><td>Re-enter Password:</td></tr>
         <tr><td><input type="password" id="p2" name="pwd2" required></td></tr>
