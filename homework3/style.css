@@ -188,3 +188,9 @@ table input[type="reset"] {
 .error {
     font-size: 13px;
 }
+.hint{
+font-size:12px;
+color:#666;
+margin-top:2px;
+display:block;
+}
