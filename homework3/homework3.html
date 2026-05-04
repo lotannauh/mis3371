@@ -34,7 +34,7 @@ All script logic has been moved to an external JavaScript file ( myscripts.js) a
 <tr><td>First Name:</td></tr>
 <tr>
 <td>
-<input type="text" id="fName"
+<input type="text" id="fName" maxlength="30"
 pattern="[A-Za-z'\- ]{1,30}"
 title="Letters, apostrophes and dashes only (1-30 chars)"
 required
@@ -57,7 +57,7 @@ onblur="chkMI()">
 <tr><td>Last Name:</td></tr>
 <tr>
 <td>
-<input type="text" id="LName"
+<input type="text" id="LName" maxlength="30"
 pattern="[A-Za-z'\- ]{1,30}"
 title="Letters, apostrophes and dashes only"
 required
@@ -79,19 +79,20 @@ onblur="chkDOB()">
 <tr><td>SSN:</td></tr>
 <tr>
 <td>
-<input type="password" id="ssn"
+<input type="text" id="ssn"
 maxlength="11"
 title="Format: 000-00-0000"
 required
-oninput="fmtSSN(this)" onblur="fmtSSN(this)">
+oninput="fmtSSN(this)" onblur="fmtSSN(this)" required>
 <span class="error" id="ssn_error"></span>
+<span class="hint">Format: 000-00-0000</span>
 </td>
 </tr>
 
 <tr><td>Email:</td></tr>
 <tr>
 <td>
-<input type="email" id="email"
+<input type="email" id="email" maxlength="50" required
 title="name@domain.tld"
 required
 oninput="chkEmail()" onblur="chkEmail()">
@@ -102,11 +103,12 @@ oninput="chkEmail()" onblur="chkEmail()">
 <tr><td>Phone Number:</td></tr>
 <tr>
 <td>
-<input type="tel" id="phone"
+<input type="tel" id="phone" maxlength="12" required
 title="000-000-0000"
 required
-oninput="chkPhone()" onblur="chkPhone()">
+oninput="formatPhone(this)" onblur="chkPhone()">
 <span class="error" id="phone_error"></span>
+<span class="hint">Format: 000-000-0000</span>
 </td>
 </tr>
 
@@ -198,25 +200,32 @@ $200k
 
 <div class="radio-zone">
 <p><strong>Gender:</strong></p>
-<input type="radio" name="gender"> Male
-<input type="radio" name="gender"> Female
-<input type="radio" name="gender"> Other
+<label><input type="radio" name="gender" value="Male"> Male</label>
+<label><input type="radio" name="gender" value="Female"> Female</label>
+<label><input type="radio" name="gender" value="Other"> Other</label>
+<span class="error" id="gender_error"></span>
 </div>
 
 <br>
 
 <div class="radio-zone">
 <p><strong>Vaccinated?</strong></p>
-<input type="radio" name="vaccinated"> Yes
-<input type="radio" name="vaccinated"> No
+
+<label><input type="radio" name="vaccinated" value="Yes"> Yes</label>
+<label><input type="radio" name="vaccinated" value="No"> No</label>
+
+<span class="error" id="vaccinated_error"></span>
 </div>
 
 <br>
 
 <div class="radio-zone">
 <p><strong>Insurance?</strong></p>
-<input type="radio" name="insurance"> Yes
-<input type="radio" name="insurance"> No
+
+<label><input type="radio" name="insurance" value="Yes"> Yes</label>
+<label><input type="radio" name="insurance" value="No"> No</label>
+
+<span class="error" id="insurance_error"></span>
 </div>
 
 <br>
