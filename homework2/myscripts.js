@@ -16,7 +16,109 @@ window.onload = function() {
 function updateSlider(val) {
     document.getElementById("salary_label").innerText = val;
 }
+function ssnKey(e, el){
+    let k = e.key;
 
+    if(
+        k === "Backspace" ||
+        k === "Delete" ||
+        k === "ArrowLeft" ||
+        k === "ArrowRight" ||
+        k === "Tab"
+    ){
+        return true;
+    }
+
+    if(k < "0" || k > "9"){
+        return false;
+    }
+
+    let v = el.value.replace(/\D/g,"");
+
+    if(v.length >= 9){
+        return false;
+    }
+
+    setTimeout(function(){
+        let x = el.value.replace(/\D/g,"");
+
+        if(x.length > 5){
+            el.value = x.slice(0,3)+"-"+x.slice(3,5)+"-"+x.slice(5);
+        }
+        else if(x.length > 3){
+            el.value = x.slice(0,3)+"-"+x.slice(3);
+        }
+        else{
+            el.value = x;
+        }
+    },0);
+
+    return true;
+}
+
+function phoneKey(e, el){
+    let k = e.key;
+
+    if(
+        k === "Backspace" ||
+        k === "Delete" ||
+        k === "ArrowLeft" ||
+        k === "ArrowRight" ||
+        k === "Tab"
+    ){
+        return true;
+    }
+
+    if(k < "0" || k > "9"){
+        return false;
+    }
+
+    let v = el.value.replace(/\D/g,"");
+
+    if(v.length >= 10){
+        return false;
+    }
+
+    setTimeout(function(){
+        let x = el.value.replace(/\D/g,"");
+
+        if(x.length > 6){
+            el.value = x.slice(0,3)+"-"+x.slice(3,6)+"-"+x.slice(6);
+        }
+        else if(x.length > 3){
+            el.value = x.slice(0,3)+"-"+x.slice(3);
+        }
+        else{
+            el.value = x;
+        }
+    },0);
+
+    return true;
+}
+function zipKey(e, el){
+    let k = e.key;
+
+    if(
+        k === "Backspace" ||
+        k === "Delete" ||
+        k === "ArrowLeft" ||
+        k === "ArrowRight" ||
+        k === "Tab"
+    ){
+        return true;
+    }
+
+    if(k < "0" || k > "9"){
+        alert("ZIP code must contain numbers only (5 digits).");
+        return false;
+    }
+
+    if(el.value.length >= 5){
+        return false;
+    }
+
+    return true;
+}
 function validatePasswords() {
     const p1 = document.getElementById("p1").value;
     const p2 = document.getElementById("p2").value;
