@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<!--Program name: homework2.html which is an upgraded registration form for Lotanna Medical Services.
+Author: Lotanna Ume-Ezeoke
+Date: March 24, 2026
+Description: This is an advanced version of the registration form created for Assignment 2. 
+Building on the foundation of HW1, I have implemented HTML5 pattern matching (Regex) for field validation, added a dynamic salary slider, and created a " Rreview info" area to display user data in a structured table. 
+All script logic has been moved to an external JavaScript file ( myscripts.js) and styling is handled by an external CSS file ( style.css) to meet project standards.
+-->
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Registration Form HW2 - Lotanna Medical</title>
+<link rel="stylesheet" href="style.css">
+<script src="myscript.js"></script>
+</head>
+
+<body>
+
+<div class="top_banner_div" style="padding: 10px;"> 
+    <img src="logo.png" alt="clinic logo" height="80">
+    <span style="font-size: 24px; font-weight: bold;">Lotanna Medical Services</span>
+    <p id="welcome_msg"></p>
+    <div id="reset_user"></div>
+    <p id="date_display_v1"></p>
+</div>
+
+<hr>
+
+<h3>Helpful Health Information</h3>
+
+<iframe 
+    src="https://www.wikipedia.org"
+    width="100%"
+    height="300"
+    style="border:1px solid #999;"
+    title="External Educational Content">
+</iframe>
+
+<hr>
+<div id="Main_body_area">
+
+<h2 class="form-title">New Patient Registration (v3)</h2>
+<p>Please fill out everything below accurately.</p>
+
+<form id="patientForm" action="thankyou.html">
+
+<table cellpadding="5">
+
+<tr><td>First Name:</td></tr>
+<tr>
+<td>
+<input type="text" id="fName" maxlength="30" name="fName"
+pattern="[A-Za-z'\- ]{1,30}"
+title="Letters, apostrophes and dashes only (1-30 chars)"
+required
+onblur="saveFirstName()" oninput="chkFName()" onblur="chkFName()" onblur="saveFirstName()">
+<span class="error" id="fName_error"></span>
+<label>
+    <input type="checkbox" id="rememberMe" checked>
+    Remember Me
+</label>
+</td>
+</tr>
+
+<tr><td>M.I.</td></tr>
+<tr>
+<td>
+<input type="text" id="mid_init"
+pattern="[A-Za-z]{1}"
+title="Single letter only"
+onblur="chkMI()">
+<span class="error" id="mid_init_error"></span>
+</td>
+</tr>
+
+<tr><td>Last Name:</td></tr>
+<tr>
+<td>
+<input type="text" id="LName"name="LName" maxlength="30"
+pattern="[A-Za-z'\- ]{1,30}"
+title="Letters, apostrophes and dashes only"
+required
+oninput="chkLName()" onblur="chkLName()">
+<span class="error" id="LName_error"></span>
+</td>
+</tr>
+
+<tr><td>DOB:</td></tr>
+<tr>
+<td>
+<input type="date" id="dob" name="dob"
+required
+onblur="chkDOB()">
+<span class="error" id="dob_error"></span>
+</td>
+</tr>
+
+<tr><td>SSN:</td></tr>
+<tr>
+<td>
+<input type="text" id="ssn" name="ssn"
+maxlength="11"
+title="Format: 000-00-0000"
+required
+oninput="fmtSSN(this)" onblur="fmtSSN(this)" required>
+<span class="error" id="ssn_error"></span>
+<span class="hint">Format: 000-00-0000</span>
+</td>
+</tr>
+
+<tr><td>Email:</td></tr>
+<tr>
+<td>
+<input type="email" id="email" name="email" maxlength="50" required
+title="name@domain.tld"
+required
+oninput="chkEmail()" onblur="chkEmail()"onblur="saveToLocal(this)">
+<span class="error" id="email_error"></span>
+</td>
+</tr>
+
+<tr><td>Phone Number:</td></tr>
+<tr>
+<td>
+<input type="tel" id="phone" name="phone" maxlength="12" required
+title="000-000-0000"
+required
+oninput="formatPhone(this)" onblur="chkPhone()"onblur="saveToLocal(this)">
+<span class="error" id="phone_error"></span>
+<span class="hint">Format: 000-000-0000</span>
+</td>
+</tr>
+
+<tr><td>Address 1:</td></tr>
+<tr>
+<td>
+<input type="text" id="addr1" name="addr1"
+minlength="2" maxlength="30"
+required
+onblur="chkAddr1()"onblur="saveToLocal(this)">
+<span class="error" id="addr1_error"></span>
+</td>
+</tr>
+
+<tr><td>City:</td></tr>
+<tr>
+<td>
+<input type="text" id="city" name="city"
+minlength="2" maxlength="30"
+required
+onblur="chkCity()"onblur="saveToLocal(this)">
+<span class="error" id="city_error"></span>
+</td>
+</tr>
+
+<tr><td>State:</td></tr>
+<tr>
+<td>
+<select id="state" name="state" onblur="saveToLocal(this)">
+<option value="">Select State</option>
+</select>
+<span class="error" id="state_error"></span>
+</td>
+</tr>
+
+<tr><td>Zip Code:</td></tr>
+<tr>
+<td>
+<input type="text" id="zip" name="zip"
+title="5 digits only"
+maxlength="5"
+required
+oninput="chkZip()" onblur="chkZip(); saveToLocal(this)">
+<span class="error" id="zip_error"></span>
+</td>
+</tr>
+
+<!-- <tr><td>Desired Salary: $<span id="salary_label">110000</span></td></tr>
+<tr>
+<td>
+$20k
+<input type="range" min="20000" max="200000" step="1000"
+oninput="updateSlider(this.value)">
+$200k
+</td>
+</tr> -->
+
+</table>
+
+<div class="check-box-zone">
+<p><strong>Check all that apply:</strong></p>
+
+<input type="checkbox" name="hx" value="Chicken Pox" onblur="saveToLocal(this)"> Chicken Pox <br>
+<input type="checkbox" name="hx" value="Measles" onblur="saveToLocal(this)"> Measles <br>
+<input type="checkbox" name="hx" value="Covid-19" onblur="saveToLocal(this)"> Covid-19 <br>
+<input type="checkbox" name="hx" value="Small Pox" onblur="saveToLocal(this)"> Small Pox <br>
+<input type="checkbox" name="hx" value="Tetanus" onblur="saveToLocal(this)"> Tetanus <br>
+
+<span class="error" id="hx_error"></span>
+</div>
+
+<br>
+
+<div class="radio-zone">
+<p><strong>Gender:</strong></p>
+<label><input type="radio" name="gender" value="Male" onclick="saveToLocal(this)"> Male</label>
+<label><input type="radio" name="gender" value="Female" onclick="saveToLocal(this)"> Female</label>
+<label><input type="radio" name="gender" value="Other" onclick="saveToLocal(this)"> Other</label>
+<span class="error" id="gender_error"></span>
+</div>
+
+<br>
+
+<div class="radio-zone">
+<p><strong>Vaccinated?</strong></p>
+
+<label><input type="radio" name="vaccinated" value="Yes"onclick="saveToLocal(this)"> Yes</label>
+<label><input type="radio" name="vaccinated" value="No"onclick="saveToLocal(this)"> No</label>
+
+<span class="error" id="vaccinated_error"></span>
+</div>
+
+<br>
+
+<div class="radio-zone">
+<p><strong>Insurance?</strong></p>
+
+<label><input type="radio" name="insurance" value="Yes"onblur="onclick="saveToLocal(this)"> Yes</label>
+<label><input type="radio" name="insurance" value="No"onblur="onclick="saveToLocal(this)"> No</label>
+
+<span class="error" id="insurance_error"></span>
+</div>
+
+<br>
+
+<table>
+
+<tr>
+<td>
+<strong>How is your health? (1–10):</strong>
+<span id="health_label">5</span>
+</td>
+</tr>
+
+<tr>
+<td>
+1
+<input type="range" id="health" name="health"min="1" max="10" value="5"
+oninput="updateHealth(this.value); saveToLocal(this)">
+10
+</td>
+</tr>
+
+</table>
+
+<br>
+
+<table>
+
+<tr><td>Desired User ID:</td></tr>
+<tr>
+<td>
+<input type="text" id="userid" name="userid"
+title="5-20 chars, starts with letter"
+required
+oninput="chkUser()" onblur="chkUser()"onblur="saveToLocal(this)">
+<span class="error" id="userid_error"></span>
+</td>
+</tr>
+
+<tr><td>Password:</td></tr>
+<tr>
+<td>
+<input type="password" id="p1"
+required
+oninput="chkPwd()">
+<span class="error" id="p1_error"></span>
+</td>
+</tr>
+
+<tr><td>Re-enter Password:</td></tr>
+<tr>
+<td>
+<input type="password" id="p2"
+required
+oninput="chkPwd()">
+<span class="error" id="p2_error"></span>
+</td>
+</tr>
+
+</table>
+
+<br>
+
+<input type="button" value="VALIDATE" onclick="validateAll()">
+<input type="submit" id="realSubmit" value="SUBMIT" style="display:none;">
+<input type="reset" value="CLEAR">
+
+</form>
+
+</div>
+
+<div id="footer_section" style="margin-top: 50px; border-top: 1px solid #ccc;">
+<p>Lotanna Medical | PO BOX 77003 | Lotanna Square TX 77003</p>
+<button type="button" onclick="alert('Contacting...')">CONTACT US</button>
+</div>
+
+</body>
+</html>
